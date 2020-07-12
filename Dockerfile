@@ -2,7 +2,7 @@
 # Stage 1: Build
 # -------
 
-FROM scjalliance/ovmf:stable202002 as builder
+FROM scjalliance/ovmf:stable202005 as builder
 
 COPY Logo.bmp /opt/src/edk2/MdeModulePkg/Logo/Logo.bmp
 
