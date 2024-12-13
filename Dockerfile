@@ -6,7 +6,7 @@ FROM scjalliance/ovmf:stable202408 AS builder
 
 COPY Logo.bmp /opt/src/edk2/MdeModulePkg/Logo/Logo.bmp
 
-RUN ["/bin/bash", "-c", "source edksetup.sh && build"]
+RUN ["/bin/bash", "-c", "source edksetup.sh && build -D TPM2_ENABLE -D SECURE_BOOT_ENABLE"]
 
 
 
