@@ -11,7 +11,7 @@ ARG UBUNTU_VERSION=noble
 # Stage 1A: Build (SMM not required, SecureBoot optional)
 # -------
 
-FROM scjalliance/ovmf:stable202508 AS standard-builder
+FROM scjalliance/ovmf:stable202511 AS standard-builder
 
 COPY Logo.bmp /opt/src/edk2/MdeModulePkg/Logo/Logo.bmp
 
@@ -23,7 +23,7 @@ RUN ["/bin/bash", "-c", "source edksetup.sh && build -D TPM2_ENABLE -D SECURE_BO
 # Stage 1B: Build (SMM required / SecureBoot mandatory)
 # -------
 
-FROM scjalliance/ovmf:stable202508 AS secboot-builder
+FROM scjalliance/ovmf:stable202511 AS secboot-builder
 
 COPY Logo.bmp /opt/src/edk2/MdeModulePkg/Logo/Logo.bmp
 
