@@ -47,7 +47,7 @@ RUN apt-get update -qq && \
              && \
     apt-get purge -y --auto-remove && rm -rf /var/lib/apt/lists/*
 
-COPY --from=secboot-builder /opt/src/edk2/Build/OvmfX64/RELEASE_GCC5/FV/OVMF_VARS.fd /data/OVMF_VARS.secboot.fd
+COPY --from=secboot-builder /opt/src/edk2/Build/OvmfX64/RELEASE_GCC/FV/OVMF_VARS.fd /data/OVMF_VARS.secboot.fd
 
 RUN ["/usr/bin/virt-fw-vars", "--in-place", "/data/OVMF_VARS.secboot.fd", "--enroll-redhat", "--secure-boot"]
 
@@ -59,9 +59,9 @@ RUN ["/usr/bin/virt-fw-vars", "--in-place", "/data/OVMF_VARS.secboot.fd", "--enr
 
 FROM alpine
 
-COPY --from=standard-builder /opt/src/edk2/Build/OvmfX64/RELEASE_GCC5/FV/OVMF*.fd /data/
+COPY --from=standard-builder /opt/src/edk2/Build/OvmfX64/RELEASE_GCC/FV/OVMF*.fd /data/
 
-COPY --from=secboot-builder /opt/src/edk2/Build/OvmfX64/RELEASE_GCC5/FV/OVMF_CODE.fd /data/OVMF_CODE.secboot.fd
+COPY --from=secboot-builder /opt/src/edk2/Build/OvmfX64/RELEASE_GCC/FV/OVMF_CODE.fd /data/OVMF_CODE.secboot.fd
 
 COPY --from=secboot-keys-injector /data/OVMF_VARS.secboot.fd /data/OVMF_VARS.secboot.fd
 
